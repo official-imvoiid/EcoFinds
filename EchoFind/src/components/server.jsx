@@ -1,5 +1,5 @@
 // This is a mock server component that would normally handle API calls
-// In a real application, this would be replaced with actual API calls to your backend
+// In a real application, this would be replaced with actual API calls 
 
 export const api = {
   // Authentication
@@ -228,9 +228,3 @@ export const handleApiCall = async (apiCall) => {
     throw error
   }
 }
-
-// Usage examples:
-// import { api, handleApiCall } from './components/server'
-// 
-// const products = await handleApiCall(() => api.getProducts({ category: 'Electronics' }))
-// const user = await handleApiCall(() => api.login({ email, password }))

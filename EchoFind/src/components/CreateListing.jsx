@@ -201,24 +201,91 @@ const CreateListing = ({ currentUser }) => {
         <div className="form-group">
           <label>Product Image (optional)</label>
 
-          <div className="image-upload-options">
-            <label className="radio-label">
-              Image URL
+          <div className="retro-radio-container" style={{
+            display: 'flex',
+            gap: '20px',
+            marginBottom: '15px',
+            padding: '10px',
+            backgroundColor: '#f7fafc',
+            borderRadius: '8px',
+            border: '1px solid #e2e8f0'
+          }}>
+            <label className="retro-radio-label" style={{
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              fontSize: '16px'
+            }}>
               <input
                 type="radio"
                 value="url"
                 checked={imageUploadType === 'url'}
                 onChange={(e) => setImageUploadType(e.target.value)}
+                className="retro-radio"
+                style={{ display: 'none' }}
               />
+              <span className="retro-radio-custom" style={{
+                display: 'inline-block',
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                border: '2px solid #3182ce',
+                marginRight: '8px',
+                position: 'relative',
+                backgroundColor: imageUploadType === 'url' ? '#3182ce' : 'white'
+              }}>
+                {imageUploadType === 'url' && (
+                  <span style={{
+                    position: 'absolute',
+                    top: '4px',
+                    left: '4px',
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    backgroundColor: 'white'
+                  }}></span>
+                )}
+              </span>
+              Image URL
             </label>
-            <label className="radio-label">
-              Upload Image
+            
+            <label className="retro-radio-label" style={{
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              fontSize: '16px'
+            }}>
               <input
                 type="radio"
                 value="upload"
                 checked={imageUploadType === 'upload'}
                 onChange={(e) => setImageUploadType(e.target.value)}
+                className="retro-radio"
+                style={{ display: 'none' }}
               />
+              <span className="retro-radio-custom" style={{
+                display: 'inline-block',
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                border: '2px solid #3182ce',
+                marginRight: '8px',
+                position: 'relative',
+                backgroundColor: imageUploadType === 'upload' ? '#3182ce' : 'white'
+              }}>
+                {imageUploadType === 'upload' && (
+                  <span style={{
+                    position: 'absolute',
+                    top: '4px',
+                    left: '4px',
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    backgroundColor: 'white'
+                  }}></span>
+                )}
+              </span>
+              Upload Image
             </label>
           </div>
 
@@ -230,6 +297,13 @@ const CreateListing = ({ currentUser }) => {
               placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
               aria-invalid={!!errors.image}
               aria-describedby={errors.image ? 'image-error' : undefined}
+              style={{
+                width: '100%',
+                padding: '10px',
+                border: '1px solid #e2e8f0',
+                borderRadius: '4px',
+                fontSize: '16px'
+              }}
             />
           )}
 
@@ -241,8 +315,16 @@ const CreateListing = ({ currentUser }) => {
                 onChange={handleImageUpload}
                 aria-invalid={!!errors.image}
                 aria-describedby={errors.image ? 'image-error' : undefined}
+                style={{
+                  marginBottom: '10px',
+                  fontSize: '16px'
+                }}
               />
-              <p className="help-text">
+              <p className="help-text" style={{
+                fontSize: '14px',
+                color: '#718096',
+                marginTop: '5px'
+              }}>
                 Accepted formats: JPG, PNG, GIF, WebP (Max size: 5MB)
               </p>
             </div>
@@ -251,19 +333,28 @@ const CreateListing = ({ currentUser }) => {
           {errors.image && <span id="image-error" className="error-message">{errors.image}</span>}
 
           {previewSrc && (
-            <div className="image-preview">
-              <p className="preview-label">Image Preview:</p>
-              <div className="preview-container">
+            <div className="image-preview" style={{ marginTop: '15px' }}>
+              <p className="preview-label" style={{ fontWeight: 'bold', marginBottom: '10px' }}>Image Preview:</p>
+              <div className="preview-container" style={{
+                width: '200px',
+                height: '200px',
+                border: '2px solid #e2e8f0',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                position: 'relative'
+              }}>
                 <img
                   src={previewSrc}
                   alt="Product preview"
                   className="preview-image"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
                   onError={(e) => {
                     e.target.style.display = 'none';
-                    e.target.parentElement.insertAdjacentHTML(
-                      'beforeend',
-                      '<div class="invalid-image">Invalid image</div>'
-                    );
+                    e.target.parentElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #718096;">Invalid image</div>';
                   }}
                 />
               </div>
@@ -271,6 +362,15 @@ const CreateListing = ({ currentUser }) => {
                 type="button"
                 onClick={handleRemoveImage}
                 className="remove-button"
+                style={{
+                  marginTop: '10px',
+                  padding: '5px 10px',
+                  backgroundColor: '#e53e3e',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer'
+                }}
               >
                 Remove Image
               </button>
@@ -278,7 +378,17 @@ const CreateListing = ({ currentUser }) => {
           )}
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" style={{
+          padding: '12px 24px',
+          backgroundColor: '#3182ce',
+          color: 'white',
+          border: 'none',
+          borderRadius: '6px',
+          cursor: 'pointer',
+          fontSize: '16px',
+          fontWeight: 'bold',
+          marginTop: '20px'
+        }}>
           Create Listing
         </button>
       </form>

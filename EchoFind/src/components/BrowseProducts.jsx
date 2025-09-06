@@ -33,7 +33,7 @@ const ProductCard = ({ product, onClick, showActions = false, onEdit, onDelete, 
       cursor: 'pointer',
       transition: 'transform 0.2s',
       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      width: '250px',
+      width: '308px',
       backgroundColor: 'white'
     }}>
       <div className="product-image" style={{ 
@@ -143,7 +143,7 @@ const ProductCard = ({ product, onClick, showActions = false, onEdit, onDelete, 
   )
 }
 
-// Main BrowseProducts component with all 42 products from your original data
+// Main BrowseProducts component with all 42 products 
 const BrowseProducts = ({ onProductClick, currentUser, onAddToCart }) => {
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
